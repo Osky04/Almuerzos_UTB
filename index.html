@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Almuerzos UTB</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <link rel="stylesheet" href="styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "qrcode": "https://esm.sh/qrcode@1.5.3"
+    }
+  }
+  </script>
+</head>
+<body>
+  <div class="app-root">
+    <header class="header">
+      <div class="logo-box">
+        <img src="Universidad_Tecnológica_de_Bolívar.png" alt="Universidad Tecnológica de Bolívar" class="logo-img" />
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="card">
+        <div class="card-section card-section--form">
+          <div class="inputs-row">
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" type="text" autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="codigo">Código estudiantil</label>
+              <input id="codigo" type="text" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="almuerzo">Selecciona tu almuerzo</label>
+            <div class="menu-options" id="menuOptions">
+              <button class="menu-option selected" data-id="estudiantil" data-nombre="Almuerzo estudiantil" data-precio="16000">
+                <span class="menu-title">Almuerzo estudiantil</span>
+                <span class="menu-price">$16.000</span>
+              </button>
+              <button class="menu-option" data-id="ejecutivo" data-nombre="Almuerzo ejecutivo" data-precio="20000">
+                <span class="menu-title">Almuerzo ejecutivo</span>
+                <span class="menu-price">$20.000</span>
+              </button>
+              <button class="menu-option" data-id="arroz-chino" data-nombre="Arroz chino" data-precio="25000">
+                <span class="menu-title">Arroz chino</span>
+                <span class="menu-price">$25.000</span>
+              </button>
+              <button class="menu-option" data-id="especial" data-nombre="Almuerzo especial del día" data-precio="30000">
+                <span class="menu-title">Almuerzo especial del día</span>
+                <span class="menu-subtitle">Plato gourmet que cambia cada día</span>
+                <span class="menu-price">$30.000</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-section card-section--summary">
+          <div class="summary-row">
+            <span class="summary-label">Plato:</span>
+            <span class="summary-value" id="resumenPlato">Almuerzo estudiantil</span>
+          </div>
+          <div class="summary-row">
+            <span class="summary-label">Precio:</span>
+            <span class="summary-value" id="resumenPrecio">$16.000</span>
+          </div>
+        </div>
+
+        <div class="card-section card-section--actions">
+          <button id="btnSimularPago" class="btn-primary">
+            Pagar y generar ticket
+          </button>
+          <p class="hint-text">El pago se simula, no se realiza ningún cobro real.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="bottom-sheet" id="ticketSheet">
+    <div class="bottom-sheet__handle"></div>
+    <div class="bottom-sheet__content">
+      <div class="ticket-header">
+        <span class="pill">Ticket generado</span>
+        <button class="icon-btn" id="cerrarTicket" aria-label="Cerrar ticket">
+          ✕
+        </button>
+      </div>
+      <div class="ticket-body">
+        <div class="ticket-info">
+          <div class="ticket-row">
+            <span class="ticket-label">Nombre</span>
+            <span class="ticket-value" id="ticketNombre"></span>
+          </div>
+          <div class="ticket-row">
+            <span class="ticket-label">Código</span>
+            <span class="ticket-value" id="ticketCodigo"></span>
+          </div>
+          <div class="ticket-row">
+            <span class="ticket-label">Almuerzo</span>
+            <span class="ticket-value" id="ticketPlato"></span>
+          </div>
+          <div class="ticket-row">
+            <span class="ticket-label">Valor</span>
+            <span class="ticket-value" id="ticketPrecio"></span>
+          </div>
+          <div class="ticket-row">
+            <span class="ticket-label">Ticket</span>
+            <span class="ticket-value" id="ticketId"></span>
+          </div>
+        </div>
+
+        <div class="ticket-qr">
+          <canvas id="qrCanvas"></canvas>
+        </div>
+
+        <p class="ticket-note">
+          Muestra este código en la cafetería para reclamar tu almuerzo.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
+
